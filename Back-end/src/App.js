@@ -1,8 +1,55 @@
 const express = require('express');
+const morgan = require('morgan');
+var bodyParser = require('body-parser');
+const cors = require("cors");
+require('dotenv').config({path: './env'});
+
 const app = express();
+var corsOptions = {
+    origin: "http://localhost:8081"
+  };
+  
+  app.use(cors(corsOptions));
+  
+  // parse requests of content-type - application/json
+  app.use(bodyParser.json());
+  
+  // parse requests of content-type - application/x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({ extended: true }));
+
+//const productsRouter = require("./products.routes");
+
+// Configuring the database
+const db = require("./models");
+db.mongoose
+  .connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Connected to the database!");
+  })
+  .catch(err => {
+    console.log("Cannot connect to the database!", err);
+    process.exit();
+  });
 
 
 
-app.listen(3000,() =>{
-    console.log("Servidor en puerto 3000");
+
+// settings
+app.set('port', process.env.PORT || 3000);
+
+
+//middlewares
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+
+//rutas
+require("./routes/users.routes")(app);
+
+//iniciamos servidor
+app.listen(app.get('port'),() =>{
+    console.log(`Servidor en puerto ${app.get('port')}`);
 })
+
