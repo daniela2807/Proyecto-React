@@ -5,11 +5,8 @@ const cors = require("cors");
 require('dotenv').config({path: './env'});
 
 const app = express();
-var corsOptions = {
-    origin: "http://localhost:8081"
-  };
   
-  app.use(cors(corsOptions));
+  app.use(cors());
   
   // parse requests of content-type - application/json
   app.use(bodyParser.json());
@@ -47,6 +44,8 @@ app.use(express.urlencoded({extended: false}));
 
 //rutas
 require("./routes/users.routes")(app);
+require("./routes/products.routes")(app);
+require("./routes/category.routes")(app);
 
 //iniciamos servidor
 app.listen(app.get('port'),() =>{

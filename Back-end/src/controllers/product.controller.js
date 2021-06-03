@@ -1,31 +1,33 @@
 const db = require("../models");
-const User = db.user;
+const Product = db.product;
 
 // Create and Save a new User
 exports.create = (req, res) => {
      // Validate request
-  if (!req.body.name || !req.body.email || !req.body.password) {
+  if (!req.body.name || !req.body.brand || !req.body.cost || !req.body.id_cat) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
   // Create a Tutorial
-  const user = new User({
+  const product = new Product({
     name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
+    brand: req.body.brand,
+    cost: req.body.cost,
+    id_cat: req.body.id_cat,
+    description: req.body.description
   });
 
-  // Save User in the database
-  user
-    .save(user)
+  // Save Product in the database
+  product
+    .save(product)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Tutorial."
+          err.message || "Some error occurred while creating the Product."
       });
     });
   
@@ -33,10 +35,10 @@ exports.create = (req, res) => {
 
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
-    User.find()
+    Product.find()
     .then(data => {
         if(!data){
-            res.send("No existen User")
+            res.send("No existen Productos")
         }
       res.send(data);
     })
@@ -52,16 +54,16 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    User.findById(id)
+    Product.findById(id)
       .then(data => {
         if (!data)
-          res.status(404).send({ message: "Not found User with id " + id });
+          res.status(404).send({ message: "Not found Product with id " + id });
         else res.send(data);
       })
       .catch(err => {
         res
           .status(500)
-          .send({ message: "Error retrieving Users with id=" + id });
+          .send({ message: "Error retrieving Product with id=" + id });
       });
 };
 
@@ -75,17 +77,17 @@ exports.update = (req, res) => {
     
       const id = req.params.id;
     
-      User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+      Product.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
           if (!data) {
             res.status(404).send({
-              message: `Cannot update User with id=${id}. Maybe User was not found!`
+              message: `Cannot update Product with id=${id}. Maybe Product was not found!`
             });
-          } else res.send({ message: "User was updated successfully." });
+          } else res.send({ message: "Product was updated successfully." });
         })
         .catch(err => {
           res.status(500).send({
-            message: "Error updating User with id=" + id
+            message: "Error updating Product with id=" + id
           });
         });
 };
@@ -93,21 +95,21 @@ exports.update = (req, res) => {
 // Delete a User with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
-    User.findByIdAndRemove(id)
+    Product.findByIdAndRemove(id)
       .then(data => {
         if (!data) {
           res.status(404).send({
-            message: `Cannot delete User with id=${id}. Maybe User was not found!`
+            message: `Cannot delete Product with id=${id}. Maybe Product was not found!`
           });
         } else {
           res.send({
-            message: "User was deleted successfully!"
+            message: "Product was deleted successfully!"
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete User with id=" + id
+          message: "Could not delete Product with id=" + id
         });
       });
 };

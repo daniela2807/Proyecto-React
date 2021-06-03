@@ -1,19 +1,23 @@
+const { Schema } = require("mongoose");
 
-module.exports = mongoose => {
+   module.exports = mongoose => {
+    //var Category = mongoose.model('Category');
     var schema = mongoose.Schema(
       {
         name: {
           type: String,
           required: true,
         },
-        email: {
+        brand: {
           type: String,
           required: true,
         },
-        password:{
-          type: String,
+        cost: {
+          type: Number,
           required: true,
-        }
+        },
+        id_cat:{ type: Schema.ObjectId, ref: "Category" }  ,
+        description: {type: Array, default: [], require:false}
       },
       { timestamps: true }
     );
@@ -24,6 +28,6 @@ module.exports = mongoose => {
       return object;
     });
   
-    const User = mongoose.model("User", schema);
-    return User;
+    const Product = mongoose.model("Product", schema);
+    return Product;
   };
