@@ -1,23 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View, Text } from 'react-native'
 import { TextInput, Button} from 'react-native-paper'
 import { formStyle } from '../../styles'
 import { useFormik } from 'formik'
 import { registerApi} from '../../api/user'
+import Toast from 'react-native-simple-toast';
 
 import * as Yup from 'yup';
 
 export default function RegisterForm(props) {
     const { changeForm } = props;
+    const [loading, setLoading] = useState(false);
 
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
+            setLoading(true);
             try{
                 await registerApi(formData);
-                console.log("Ok");
+                changeForm();
             }catch(error){
+                setLoading(false);
+                 Toast.show('Error al registrar usuario', Toast.LONG);
                 console.log(error)
             }
         }
@@ -30,7 +35,7 @@ export default function RegisterForm(props) {
                 onChangeText={(text) => formik.setFieldValue("email", text)} 
                 value = {formik.values.email}
                 error={formik.errors.email} />
-            <TextInput label="Nombre de Usuario" style={formStyle.input}
+            <TextInput label="Nombre" style={formStyle.input}
                 onChangeText={(text) => formik.setFieldValue("name", text)}
                 value = {formik.values.name}
                 error={formik.errors.name} />
@@ -43,7 +48,8 @@ export default function RegisterForm(props) {
                 value = {formik.values.repeatPassword}
                 error={formik.errors.repeatPassword} />
 
-            <Button mode="contained" style={formStyle.btnSucces} onPress={formik.handleSubmit}>Registrarse</Button>
+            <Button mode="contained" style={formStyle.btnSucces} onPress={formik.handleSubmit}
+            loading={loading}>Registrarse</Button>
             <Button mode="text" style={formStyle.btnText}
                 labelStyle={formStyle.btnTextLabel}
                 onPress={changeForm}>Iniciar sesion</Button>

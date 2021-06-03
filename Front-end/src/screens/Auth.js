@@ -11,8 +11,7 @@ export default function Auth(){
     return(
         <View style = {layoutStyle.container}>
             <Image style={styles.logo} source={logo}/>
-            <KeyboardAvoidingView 
-            behavior = {Platform.OS === "ios" ? "padding":"height"}>
+            <KeyboardAvoidingView>
             {showLogin? <Text>Form Login</Text> : <RegisterForm changeForm={changeForm}/>}
             </KeyboardAvoidingView>
         </View>
