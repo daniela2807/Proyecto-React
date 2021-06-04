@@ -22,7 +22,7 @@ export default function RegisterForm(props) {
                 changeForm();
             }catch(error){
                 setLoading(false);
-                 Toast.show('Error al registrar usuario', Toast.LONG);
+                 Toast.show('Error al registrar usuario',Toast.LONG);
                 console.log(error)
             }
         }

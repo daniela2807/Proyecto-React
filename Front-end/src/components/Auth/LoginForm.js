@@ -6,10 +6,13 @@ import Toast from 'react-native-simple-toast';
 import {useFormik} from 'formik'
 import {loginApi} from '../../api/user'
 import * as Yup from "yup";
+import {AuthContext} from '../../context/AuthContext'
 
 export default function LoginForm(props){
     const {changeForm} = props;
     const [loading, setLoading] = useState(false)
+
+    const {singIn} = React.useContext(AuthContext);
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -22,14 +25,14 @@ export default function LoginForm(props){
                 if(response.message == "0") {
                     Toast.show('Error al ingresar', Toast.LONG);
                 }else{
-                    Toast.show('Bien', Toast.LONG);
+                    singIn()
+                    Toast.show('Bien',Toast.LONG);
                 }
 
             }catch(error){
                 Toast.show('Error al ingresar', Toast.LONG);
-                setLoading(false);
             }
-            
+            setLoading(false);
         }
     })
     return(

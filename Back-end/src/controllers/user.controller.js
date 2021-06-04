@@ -123,12 +123,12 @@ exports.login = (req, res) => {
       console.log(doc);
       if(doc==""){
         res.status(400).send({
-          message: "usuario o contraseña no coinciden"
+          message: "0"
         });
       }else{
        // console.log(doc)
         res.send({
-          message: "Login exitoso"
+          message: "1"
         });
       }
       
