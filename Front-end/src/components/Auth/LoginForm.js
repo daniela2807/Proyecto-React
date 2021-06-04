@@ -26,11 +26,10 @@ export default function LoginForm(props){
                 }
 
             }catch(error){
-                setLoading(false);
                 Toast.show('Error al ingresar', Toast.LONG);
-                console.log(error)
+                setLoading(false);
             }
-            setLoading(false);
+            
         }
     })
     return(
