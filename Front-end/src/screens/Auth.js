@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Image, KeyboardAvoidingView, Platform} from 'rea
 import logo from "../../assets/logo.jpg"
 import {layoutStyle} from '../styles'
 import RegisterForm from '../components/Auth/RegisterForm'
+import LoginForm from '../components/Auth/LoginForm'
 
 export default function Auth(){
     const [showLogin, setshowLogin] = useState(false);
@@ -12,7 +13,7 @@ export default function Auth(){
         <View style = {layoutStyle.container}>
             <Image style={styles.logo} source={logo}/>
             <KeyboardAvoidingView>
-            {showLogin? <Text>Form Login</Text> : <RegisterForm changeForm={changeForm}/>}
+            {showLogin? <LoginForm changeForm={changeForm}/>  : <RegisterForm changeForm={changeForm}/>}
             </KeyboardAvoidingView>
         </View>
     )

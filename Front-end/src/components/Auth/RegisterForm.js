@@ -14,7 +14,7 @@ export default function RegisterForm(props) {
 
     const formik = useFormik({
         initialValues: initialValues(),
-        validationSchema: Yup.object(validationSchema()),
+        validationSchema: Yup.object().shape(validationSchema()),
         onSubmit: async (formData) => {
             setLoading(true);
             try{
@@ -49,7 +49,7 @@ export default function RegisterForm(props) {
                 error={formik.errors.repeatPassword} />
 
             <Button mode="contained" style={formStyle.btnSucces} onPress={formik.handleSubmit}
-            loading={loading}>Registrarse</Button>
+            loading={loading} disabled={!formik.isValid}>Registrarse</Button>
             <Button mode="text" style={formStyle.btnText}
                 labelStyle={formStyle.btnTextLabel}
                 onPress={changeForm}>Iniciar sesion</Button>

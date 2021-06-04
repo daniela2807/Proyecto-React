@@ -5,6 +5,8 @@ module.exports = app => {
   
     // Create a new Tutorial
     router.post("/", users.create);
+
+    router.post("/auth", users.login);
   
     // Retrieve all users
     router.get("/", users.findAll);

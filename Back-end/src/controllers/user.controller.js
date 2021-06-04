@@ -111,3 +111,26 @@ exports.delete = (req, res) => {
         });
       });
 };
+
+
+exports.login = (req, res) => {
+
+  console.log(req.body);
+  User.find({$and:[{email:req.body.email},{password: req.body.password}]}, function(err,doc){
+    if(err) {
+      res.send(err)
+    }else{
+      console.log(doc);
+      if(doc==""){
+        res.status(400).send({
+          message: "usuario o contraseña no coinciden"
+        });
+      }else{
+       // console.log(doc)
+        res.send({
+          message: "Login exitoso"
+        });
+      }
+      
+    }});
+};
