@@ -7,13 +7,13 @@ import { AuthContext } from './src/context/AuthContext';
 import Principal from './src/screens/Principal';
 
 export default function App() {
-  const [auth, setAuth] = React.useState(false)
   const [isLoading, setIsLoading] = React.useState(undefined);
   const [userToken, setUserToken] = React.useState(false);
 
   const authContext = React.useMemo(() =>({
-    singIn:() => {
-      setUserToken('jkdjwe');
+    singIn: (email) => {
+      console.log(email);
+      setUserToken('vfeef');
       setIsLoading(false);
     },
     singOut: () => {
@@ -21,10 +21,10 @@ export default function App() {
       setIsLoading(false);
     },
     signUp: () => {
-      setUserToken('jkdjwe');
+      setUserToken('vfeef');
       setIsLoading(false);
     }
-  }))
+  }),[])
 
   useEffect(()=>{
     setTimeout(()=>{

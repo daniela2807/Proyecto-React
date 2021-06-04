@@ -12,7 +12,7 @@ export default function Principal(){
             <Text>Pantalla principal</Text>
             <Text>Pantalla principal</Text>
             <Button mode="text" 
-                onPress={() => {singOut()}}>Iniciar sesion</Button>
+                onPress={() => {singOut()}}>LogOut</Button>
         </View>
     )
 }

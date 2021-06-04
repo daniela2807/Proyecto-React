@@ -25,7 +25,7 @@ export default function LoginForm(props){
                 if(response.message == "0") {
                     Toast.show('Error al ingresar', Toast.LONG);
                 }else{
-                    singIn()
+                    singIn(formData.email)
                     Toast.show('Bien',Toast.LONG);
                 }
 
