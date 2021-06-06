@@ -1,0 +1,94 @@
+import React from "react";
+import { StyleSheet, Switch, SwitchBase } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import AwesomeIcon from "react-native-vector-icons/FontAwesome";
+import colors from "../styles/colors";
+// se tienen que importar para poder usarlas en el menu
+import Home from "../screens/home";
+import Favorites from "../screens/favorites";
+import Car from "../screens/car";
+import AccountStack from "./AccountStack"
+import { SafeAreaInsetsContext } from "react-native-safe-area-context";
+
+const Tab = createMaterialBottomTabNavigator();
+
+export default function AppNavigation() {
+  return (
+    // aqui van los taps del menu
+    <NavigationContainer>
+      <Tab.Navigator
+        barStyle={styles.navigation}
+        screenOptions={({ route }) => ({
+          tabBarIcon: (routeStatus) => {
+            return setIcon(route, routeStatus);
+          },
+        })}
+      >
+        <Tab.Screen
+          name="home"
+          component={Home}
+          options={{
+            title: "Inicio",
+          }}
+        />
+        <Tab.Screen
+          name="favorites"
+          component={Favorites}
+          options={{
+            title: "Favoritos",
+          }}
+        />
+        <Tab.Screen
+          name="car"
+          component={Car}
+          options={{
+            title: "Carrito",
+          }}
+        />
+        {
+          <Tab.Screen
+            name="account"
+            component={AccountStack}
+            options={{
+              title: "Mi cuenta",
+            }}
+          />
+        }
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function setIcon(route, routeStatus) {
+  let iconName = "";
+  switch (route.name) {
+    case "home":
+      iconName = "home";
+      break;
+
+    case "favorites":
+      iconName = "heart";
+      break;
+
+    case "car":
+      iconName = "shopping-cart";
+      break;
+    case "account":
+      iconName = "bars";
+      break;
+    default:
+      break;
+  }
+  return <AwesomeIcon name={iconName} style={styles.icon} />;
+}
+
+const styles = StyleSheet.create({
+  navigation: {
+    backgroundColor: colors.bgDark,
+  },
+  icon: {
+    fontSize: 20,
+    color: colors.fontLight,
+  },
+});
