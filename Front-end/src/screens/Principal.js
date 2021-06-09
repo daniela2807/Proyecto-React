@@ -5,6 +5,15 @@ import {AuthContext} from '../context/AuthContext'
 
 export default function Principal(){
     const {singOut} = React.useContext(AuthContext);
+    const getData = async() => {
+        try{
+          const jsonValue = await AsyncStorage.getItem('@user')
+          console.log(JSON.parse(jsonValue));
+        }catch(e){
+          console.log(e)
+        }
+      }
+      
 
     return(
         <View>

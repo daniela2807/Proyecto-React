@@ -1,6 +1,6 @@
 const db = require("../models");
 const User = db.user;
-
+const { sign } = require("jsonwebtoken");
 // Create and Save a new User
 exports.create = (req, res) => {
      // Validate request
@@ -20,7 +20,14 @@ exports.create = (req, res) => {
   user
     .save(user)
     .then(data => {
-      res.send(data);
+      console.log(data)
+      data.password = undefined
+      const jsonwebtoken = sign({ result: data }, 'reactproy');
+      res.send({
+        message: "1",
+        data: data,
+        token: jsonwebtoken,
+      });
     })
     .catch(err => {
       res.status(500).send({
@@ -127,9 +134,13 @@ exports.login = (req, res) => {
         });
       }else{
        // console.log(doc)
-        res.send({
-          message: "1"
-        });
+       doc.password = undefined;
+       const jsonwebtoken = sign({ result: doc }, 'reactproy');
+       res.send({
+         message: "1",
+         data: doc,
+         token: jsonwebtoken,
+       });
       }
       
     }});

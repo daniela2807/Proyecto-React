@@ -5,12 +5,14 @@ import { formStyle } from '../../styles'
 import { useFormik } from 'formik'
 import { registerApi} from '../../api/user'
 import Toast from 'react-native-simple-toast';
-
+import {AuthContext} from '../../context/AuthContext'
 import * as Yup from 'yup';
 
 export default function RegisterForm(props) {
     const { changeForm } = props;
     const [loading, setLoading] = useState(false);
+
+    const {signUp} = React.useContext(AuthContext);
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -18,13 +20,21 @@ export default function RegisterForm(props) {
         onSubmit: async (formData) => {
             setLoading(true);
             try{
-                await registerApi(formData);
-                changeForm();
+                const response = await registerApi(formData);
+                if(response.message == "0") {
+                    Toast.show('Error al ingresar', Toast.LONG);
+                }else{
+                    console.log(response.data);
+                    signUp(response.data, response.token)
+                    Toast.show('Bien',Toast.LONG);
+                }
+
             }catch(error){
                 setLoading(false);
                  Toast.show('Error al registrar usuario',Toast.LONG);
                 console.log(error)
             }
+            setLoading(false);
         }
     })
     return (

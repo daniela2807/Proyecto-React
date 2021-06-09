@@ -12,7 +12,7 @@ export default function LoginForm(props){
     const {changeForm} = props;
     const [loading, setLoading] = useState(false)
 
-    const {singIn} = React.useContext(AuthContext);
+    const {signIn} = React.useContext(AuthContext);
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -21,11 +21,11 @@ export default function LoginForm(props){
             setLoading(true);
             try{
                 const response = await loginApi(formData);
-                console.log(response)
+                //console.log(response)
                 if(response.message == "0") {
                     Toast.show('Error al ingresar', Toast.LONG);
                 }else{
-                    singIn(formData.email)
+                    signIn(response.data, response.token)
                     Toast.show('Bien',Toast.LONG);
                 }
 
