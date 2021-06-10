@@ -6,14 +6,13 @@ import { View, Text, StyleSheet } from "react-native";
 
 export default function Userinfo(props) {
   const { user } = props;
+
   const info = "no tenemos aun la info del usuario";
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bienvenido,</Text>
       <Text style={styles.titleName}>
-        {/* {user.name && user.lastname ? `${user.name} ${user.lastname}` 
-                : user.email} aun no tenemos estos datos por eso esta comentado*/}
-        {info}
+        {user.name ? `${user.name}` : user.email}
       </Text>
     </View>
   );

@@ -19,19 +19,20 @@ export default function Principal(){
           console.log(e)
         }
       }
+
 //getData();
 
-    return(
-        <View>
-            <Text>Hola</Text>
-            <Text >Hola</Text>
-            <Text>Pantalla </Text>
-            <Button mode="text" 
-                onPress={() => {singOut()}}>LogOut</Button>
-           <Button mode="text" 
-                onPress={() => {getData()}}>GetInfoUser</Button>
-        </View>
-    )
+    // return(
+    //     <View>
+    //         <Text>Hola</Text>
+    //         <Text >Hola</Text>
+    //         <Text>Pantalla </Text>
+    //         <Button mode="text" 
+    //             onPress={() => {singOut()}}>LogOut</Button>
+    //        <Button mode="text" 
+    //             onPress={() => {getData()}}>GetInfoUser</Button>
+    //     </View>
+    // )
 }
 
 const styles = StyleSheet.create({
