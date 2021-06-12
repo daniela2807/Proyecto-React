@@ -1,18 +1,34 @@
 import React from "react";
-import { View, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StackActions } from "@react-navigation/routers";
 import Account from "../screens/Account/account";
+import Cambiarnom from "../screens/Account/cambiarNombre";
+import colors from "../styles/colors";
+
 
 const Stack = createStackNavigator();
 
 export default function AccountStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        //estos estilos se aplican en todos los header de stack.screen y lo que hacen es poner del mismo color que el menu de abajo de la patalla
+        headerTintColor: colors.fontLight,
+        headerStyle: { backgroundColor: colors.bgDark },
+        cardStyle: {
+          backgroundColor: colors.bgLight,
+        },
+      }}
+    >
       <Stack.Screen
         name="account"
         component={Account}
         options={{ title: "Cuenta", headerShown: false }}
+      />
+      <Stack.Screen
+        name="cambiar-nom"
+        component={Cambiarnom}
+        options={{ title: "Cambiar nombre completo" }}
       />
     </Stack.Navigator>
   );

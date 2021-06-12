@@ -34,7 +34,7 @@ export default function menu() {
           title="Cambiar nombre"
           description="Cambia el nombre de tu cuenta"
           left={(props) => <List.Icon {...props} icon="face" />} //para poner el icono a la izquierda
-          onPress={() => console.log("cambiando nombre")}
+          onPress={() => navigation.navigate("cambiar-nom")}
         />
         <List.Item
           title="Cambiar email"
