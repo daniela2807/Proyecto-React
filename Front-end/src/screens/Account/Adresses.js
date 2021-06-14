@@ -15,9 +15,9 @@ export default function Adresses() {
         useCallback(() => {
           (async () => {
             const jsonValue = await AsyncStorage.getItem("@user");
-            const direc = await getAdressesApi(JSON.parse(jsonValue).id)
             setUser(JSON.parse(jsonValue))
-            setDire(JSON.parse(direc))
+            console.log(user)
+            //direc = await getAdressesApi(JSON.parse(jsonValue).id)
             //console.log("user en cambiando nombre",JSON.parse(jsonValue).email)
           })();
         }, [])
