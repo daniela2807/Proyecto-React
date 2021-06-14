@@ -37,7 +37,7 @@ export default function cambiarNombre() {
         } else {
           const jsonValue = JSON.stringify(user);
           await AsyncStorage.setItem("@user", jsonValue);
-          Toast.show('Bien', Toast.LONG);
+          Toast.show('Nombre actualizado', Toast.LONG);
         }
       } catch (e) {
         console.log(e);

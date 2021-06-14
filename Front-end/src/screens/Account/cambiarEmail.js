@@ -21,7 +21,7 @@ export default function cambiarEmail() {
         const jsonValue = await AsyncStorage.getItem("@user");
         setUser(JSON.parse(jsonValue))
         await formik.setFieldValue("email", JSON.parse(jsonValue).email);
-        //console.log("user en cambiando nombre",JSON.parse(jsonValue).email)
+        
       })();
     }, [])
   );
@@ -38,7 +38,7 @@ export default function cambiarEmail() {
         if (response.message == "0") {
           Toast.show('Error al cambiar', Toast.LONG);
         } else {
-          Toast.show('Bien', Toast.LONG);
+          Toast.show('Email actualizado', Toast.LONG);
           singOut();
         }
       } catch (e) {
@@ -66,7 +66,7 @@ export default function cambiarEmail() {
         Cambiar Email
         
       </Button>
-      <Caption>Se cerrara sesion</Caption>
+      <Caption>Se cerrara sesión</Caption>
     </View>
   );
 }

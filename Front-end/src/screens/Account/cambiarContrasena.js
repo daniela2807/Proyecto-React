@@ -14,13 +14,13 @@ export default function cambiarContrasena() {
   const [ user, setUser ] = useState(false);
   const { singOut } = React.useContext(AuthContext); //para cerrar sesión
 
-  // simpre que entremos a cambiar nombre estara checando si hay cambios o no
+  // simpre que entremos a cambiar pass estara checando si hay cambios o no
   useFocusEffect(
     useCallback(() => {
       (async () => {
         const jsonValue = await AsyncStorage.getItem("@user");
         setUser(JSON.parse(jsonValue))
-        //console.log("user en cambiando nombre",JSON.parse(jsonValue).email)
+        
       })();
     }, [])
   );
@@ -37,7 +37,7 @@ export default function cambiarContrasena() {
         if (response.message == "0") {
           Toast.show('Error al cambiar', Toast.LONG);
         } else {
-          Toast.show('Bien', Toast.LONG);
+          Toast.show('Contraseña actualizada', Toast.LONG);
           singOut();
         }
       } catch (e) {
