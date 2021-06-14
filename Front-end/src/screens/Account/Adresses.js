@@ -6,19 +6,24 @@ import { getAdressesApi } from '../../api/address'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {size} from 'lodash'
 import AddressList from '../../components/Address/AddressList'
+import {AuthContext} from '../../context/AuthContext'
 
 export default function Adresses() {
-    const [user, setUser] = useState(false);
+    //const [user, setUser] = useState(false);
     const [dire, setDire] = useState(null)
     const navigation = useNavigation()
+    const {getUser} = React.useContext(AuthContext);  
     useFocusEffect(
         useCallback(() => {
           (async () => {
-            const jsonValue = await AsyncStorage.getItem("@user");
-            setUser(JSON.parse(jsonValue))
-            console.log(user)
-            //direc = await getAdressesApi(JSON.parse(jsonValue).id)
-            //console.log("user en cambiando nombre",JSON.parse(jsonValue).email)
+              const userlog = await getUser()
+              console.log("unde",userlog)
+               console.log(userlog)
+               const direcs = await getAdressesApi(userlog)
+               console.log(direcs);
+               setDire(direcs)
+              // console.log(dire)
+              //console.log("hola"+  JSON.stringify(direcs))
           })();
         }, [])
       );
@@ -36,7 +41,7 @@ export default function Adresses() {
             {!dire ? (
                 <ActivityIndicator size = "large" style={styles.loading}/>
             ): size(dire) === 0 ? (
-                <Text style = {style.noAddressText}>Crea tu primera direccion</Text>
+                <Text style = {styles.noAddressText}>Crea tu primera direccion</Text>
             ) : (
                 <AddressList addresses = {dire}/>
             )}
