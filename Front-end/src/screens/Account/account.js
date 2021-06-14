@@ -21,7 +21,6 @@ export default function account() {
       (async () => {
         const jsonValue = await AsyncStorage.getItem("@user");
         setUser(JSON.parse(jsonValue));
-        console.log("info Usuario", user);
       })();
     }, [])
   );
@@ -35,8 +34,8 @@ export default function account() {
         //pero si si tiene ya algo el usuario entramos a mostrar su información, en nuestro caso siempre
         //mostrara el loading por que aun no obtenemos los datos en "user"
         <>
-          <Search />
           <ScrollView>
+            <Search/>
             <Userinfo user={user} />
             <Menu/>
           </ScrollView>

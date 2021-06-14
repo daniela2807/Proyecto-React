@@ -1,4 +1,4 @@
-const { category } = require("../models");
+
 const db = require("../models");
 const Category = db.category;
 

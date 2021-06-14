@@ -12,7 +12,8 @@ import {AuthContext} from '../../context/AuthContext'
 
 export default function cambiarEmail() {
   const [ user, setUser ] = useState(false);
-  const { singOut } = React.useContext(AuthContext);
+  const { singOut } = React.useContext(AuthContext); //para cerrar sesión
+
   // simpre que entremos a cambiar nombre estara checando si hay cambios o no
   useFocusEffect(
     useCallback(() => {
@@ -38,7 +39,7 @@ export default function cambiarEmail() {
           Toast.show('Error al cambiar', Toast.LONG);
         } else {
           Toast.show('Bien', Toast.LONG);
-          singOut()
+          singOut();
         }
       } catch (e) {
         console.log(e);
@@ -63,8 +64,8 @@ export default function cambiarEmail() {
       //loading={loading}
       >
         Cambiar Email
+        <Caption>Se cerrara sesion</Caption>
       </Button>
-      <Caption> Se cerrara sesion automaticamente</Caption>
     </View>
   );
 }
@@ -79,7 +80,7 @@ function initialValues() {
 //funcion para validar los campos
 function validationSchema() {
   return {
-    name: Yup.email().required(true),
+    email: Yup.string().email(true).required(true),
   };
 }
 

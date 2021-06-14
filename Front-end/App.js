@@ -24,7 +24,6 @@ export default function App() {
           console.log(e);
         }
         setUserToken(token);
-
         setIsLoading(false);
       },
       singOut: () => {

@@ -40,19 +40,19 @@ export default function menu() {
           title="Cambiar email"
           description="Cambia el email de tu cuenta"
           left={(props) => <List.Icon {...props} icon="at" />} //para poner el icono a la izquierda
-          onPress={() => console.log("cambiar-email")}
+          onPress={() => navigation.navigate("cambiar-email")}
         />
         <List.Item
           title="Cambiar contraseña"
           description="Cambia la contraseña de tu cuenta"
           left={(props) => <List.Icon {...props} icon="key" />} //para poner el icono a la izquierda
-          onPress={() => console.log("cambiando contraseña")}
+          onPress={() => navigation.navigate("cambiar-contra")}
         />
         <List.Item
           title="Mis direcciones"
           description="Administra tus direcciones de envio"
           left={(props) => <List.Icon {...props} icon="map" />} //para poner el icono a la izquierda
-          onPress={() => console.log("ir a direcciones")}
+          onPress={() => navigation.navigate("direcciones")}
         />
       </List.Section>
       <List.Section>

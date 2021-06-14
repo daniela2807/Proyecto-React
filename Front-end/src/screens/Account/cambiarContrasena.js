@@ -8,9 +8,12 @@ import { formStyle } from "../../styles";
 import { updateUser } from '../../api/user'
 import Toast from 'react-native-simple-toast';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {AuthContext} from '../../context/AuthContext'
 
-export default function cambiarNombre() {
+export default function cambiarContrasena() {
   const [ user, setUser ] = useState(false);
+  const { singOut } = React.useContext(AuthContext); //para cerrar sesión
+
   // simpre que entremos a cambiar nombre estara checando si hay cambios o no
   useFocusEffect(
     useCallback(() => {
@@ -28,16 +31,15 @@ export default function cambiarNombre() {
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formValue) => {
       //setLoading(true);
-      user.name = formValue.name
+      user.password = formValue.password
       try {
         const response = await updateUser(user);
         //console.log(response)
         if (response.message == "0") {
           Toast.show('Error al cambiar', Toast.LONG);
         } else {
-          const jsonValue = JSON.stringify(user);
-          await AsyncStorage.setItem("@user", jsonValue);
           Toast.show('Bien', Toast.LONG);
+          singOut();
         }
       } catch (e) {
         console.log(e);
@@ -49,11 +51,18 @@ export default function cambiarNombre() {
   return (
     <View style={styles.container}>
       <TextInput
-        label="Nombre"
+        label="Password"
         style={formStyle.input}
-        onChangeText={(text) => formik.setFieldValue("name", text)}
-        value={formik.values.name}
-        error={formik.errors.name}
+        onChangeText={(text) => formik.setFieldValue("password", text)}
+        value={formik.values.password}
+        error={formik.errors.password}
+      />
+       <TextInput
+        label="Confirmar Password"
+        style={formStyle.input}
+        onChangeText={(text) => formik.setFieldValue("password2", text)}
+        value={formik.values.password2}
+        error={formik.errors.password2}
       />
       <Button
         mode="contained"
@@ -61,9 +70,8 @@ export default function cambiarNombre() {
         onPress={formik.handleSubmit}
       //loading={loading}
       >
-        Cambiar nombre completo
+        Cambiar Password
       </Button>
-      <Caption>Se cerrara sesion</Caption>
     </View>
   );
 }
@@ -72,13 +80,15 @@ export default function cambiarNombre() {
 //funcion para poner valores por defecto en el formulario
 function initialValues() {
   return {
-    name: "",
+    password: "",
+    password2:""
   };
 }
 //funcion para validar los campos
 function validationSchema() {
   return {
-    name: Yup.string().required(true),
+    password: Yup.string().required(true).min(6),
+    password2: Yup.string().required(true).oneOf([Yup.ref("password")])
   };
 }
 

@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from "react-native";
 //PERO YA QUE TENGAMOS ESA INFO FUNCIONARA CORRECTAMENTE LO QUE ESTA COMENTADO
 
 export default function Userinfo(props) {
-  const [ user ] = props;
+  const { user } = props;
 
   const info = "no tenemos aun la info del usuario";
   return (
