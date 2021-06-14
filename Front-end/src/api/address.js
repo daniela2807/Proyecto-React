@@ -18,3 +18,23 @@ export async function getAdressesApi(user){
         return null;
     }
 }
+
+
+export async function createAddress(address){
+    try{
+        const url = `${API_URL}/address`;
+        const params = {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(address)
+        }
+        const response = await fetch(url,params);
+        const result = await response.json();
+        return result;
+    }catch(error){
+        console.log(error);
+        return null;
+    }
+}

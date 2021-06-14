@@ -5,18 +5,19 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { getAdressesApi } from '../../api/address'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {size} from 'lodash'
+import AddressList from '../../components/Address/AddressList'
 
 export default function Adresses() {
     const [user, setUser] = useState(false);
-    const [dire, setDire] = useState(false)
+    const [dire, setDire] = useState(null)
     const navigation = useNavigation()
-
     useFocusEffect(
         useCallback(() => {
           (async () => {
             const jsonValue = await AsyncStorage.getItem("@user");
+            const direc = await getAdressesApi(JSON.parse(jsonValue).id)
             setUser(JSON.parse(jsonValue))
-            await setDire(getAdressesApi(JSON.parse(jsonValue).id))
+            setDire(JSON.parse(direc))
             //console.log("user en cambiando nombre",JSON.parse(jsonValue).email)
           })();
         }, [])
@@ -37,7 +38,7 @@ export default function Adresses() {
             ): size(dire) === 0 ? (
                 <Text style = {style.noAddressText}>Crea tu primera direccion</Text>
             ) : (
-                <Text>Listado de direcciones</Text>
+                <AddressList addresses = {dire}/>
             )}
         </ScrollView>
     )
