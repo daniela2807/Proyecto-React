@@ -4,7 +4,8 @@ import { List } from "react-native-paper";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 
-export default function menu() {
+export default function menu(props) {
+  const { user } = props;
   const navigation = useNavigation(); //para navegar entre pantallas
   const { singOut } = React.useContext(AuthContext); //para cerrar sesión
 
@@ -52,7 +53,7 @@ export default function menu() {
           title="Mis direcciones"
           description="Administra tus direcciones de envio"
           left={(props) => <List.Icon {...props} icon="map" />} //para poner el icono a la izquierda
-          onPress={() => navigation.navigate("direcciones")}
+          onPress={() => navigation.navigate("direcciones", {info: user.id})}
         />
       </List.Section>
       <List.Section>

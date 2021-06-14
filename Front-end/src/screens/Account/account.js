@@ -37,7 +37,7 @@ export default function account() {
           <ScrollView>
             <Search/>
             <Userinfo user={user} />
-            <Menu/>
+            <Menu user/>
           </ScrollView>
         </>
       )}

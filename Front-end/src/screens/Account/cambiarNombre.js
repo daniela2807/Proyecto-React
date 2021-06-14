@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import { TextInput, Button, Caption } from "react-native-paper";
 import { useFocusEffect } from "@react-navigation/native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -63,7 +63,6 @@ export default function cambiarNombre() {
       >
         Cambiar nombre completo
       </Button>
-      <Caption>Se cerrara sesion</Caption>
     </View>
   );
 }

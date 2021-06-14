@@ -20,7 +20,7 @@ export default function cambiarEmail() {
       (async () => {
         const jsonValue = await AsyncStorage.getItem("@user");
         setUser(JSON.parse(jsonValue))
-        await formik.setFieldValue("name", JSON.parse(jsonValue).name);
+        await formik.setFieldValue("email", JSON.parse(jsonValue).email);
         //console.log("user en cambiando nombre",JSON.parse(jsonValue).email)
       })();
     }, [])
@@ -64,8 +64,9 @@ export default function cambiarEmail() {
       //loading={loading}
       >
         Cambiar Email
-        <Caption>Se cerrara sesion</Caption>
+        
       </Button>
+      <Caption>Se cerrara sesion</Caption>
     </View>
   );
 }

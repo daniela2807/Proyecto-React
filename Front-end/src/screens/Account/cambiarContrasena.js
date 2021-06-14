@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import { TextInput, Button , Caption } from "react-native-paper";
 import { useFocusEffect } from "@react-navigation/native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -20,7 +20,6 @@ export default function cambiarContrasena() {
       (async () => {
         const jsonValue = await AsyncStorage.getItem("@user");
         setUser(JSON.parse(jsonValue))
-        await formik.setFieldValue("name", JSON.parse(jsonValue).name);
         //console.log("user en cambiando nombre",JSON.parse(jsonValue).email)
       })();
     }, [])

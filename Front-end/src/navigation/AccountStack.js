@@ -7,6 +7,7 @@ import CambiarEmail from "../screens/Account/cambiarEmail";
 import colors from "../styles/colors";
 import cambiarContrasena from "../screens/Account/cambiarContrasena";
 import Adresses from "../screens/Account/Adresses";
+import AddAddress from "../screens/Account/AddAddress";
 
 
 const Stack = createStackNavigator();
@@ -47,6 +48,11 @@ export default function AccountStack() {
         name="direcciones"
         component={Adresses}
         options={{ title: "Direcciones" }}
+      />
+       <Stack.Screen
+        name="add-address"
+        component={AddAddress}
+        options={{ title: "Add Adress" }}
       />
     </Stack.Navigator>
   );
