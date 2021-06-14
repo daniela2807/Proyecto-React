@@ -40,7 +40,7 @@ export default function menu() {
           title="Cambiar email"
           description="Cambia el email de tu cuenta"
           left={(props) => <List.Icon {...props} icon="at" />} //para poner el icono a la izquierda
-          onPress={() => console.log("cambiando email")}
+          onPress={() => console.log("cambiar-email")}
         />
         <List.Item
           title="Cambiar contraseña"

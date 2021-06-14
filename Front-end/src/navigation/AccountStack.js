@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { StackActions } from "@react-navigation/routers";
 import Account from "../screens/Account/account";
 import Cambiarnom from "../screens/Account/cambiarNombre";
+import CambiarEmail from "../screens/Account/cambiarEmail";
 import colors from "../styles/colors";
 
 
@@ -29,6 +30,11 @@ export default function AccountStack() {
         name="cambiar-nom"
         component={Cambiarnom}
         options={{ title: "Cambiar nombre completo" }}
+      />
+      <Stack.Screen
+        name="cambiar-email"
+        component={CambiarEmail}
+        options={{ title: "Cambiar email" }}
       />
     </Stack.Navigator>
   );

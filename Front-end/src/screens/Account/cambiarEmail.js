@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import { TextInput, Button, Caption } from "react-native-paper";
 import { useFocusEffect } from "@react-navigation/native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -8,9 +8,11 @@ import { formStyle } from "../../styles";
 import { updateUser } from '../../api/user'
 import Toast from 'react-native-simple-toast';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {AuthContext} from '../../context/AuthContext'
 
-export default function cambiarNombre() {
+export default function cambiarEmail() {
   const [ user, setUser ] = useState(false);
+  const { singOut } = React.useContext(AuthContext);
   // simpre que entremos a cambiar nombre estara checando si hay cambios o no
   useFocusEffect(
     useCallback(() => {
@@ -28,7 +30,7 @@ export default function cambiarNombre() {
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formValue) => {
       //setLoading(true);
-      user.name = formValue.name
+      user.email = formValue.email
       try {
         const response = await updateUser(user);
         //console.log(response)
@@ -36,6 +38,7 @@ export default function cambiarNombre() {
           Toast.show('Error al cambiar', Toast.LONG);
         } else {
           Toast.show('Bien', Toast.LONG);
+          singOut()
         }
       } catch (e) {
         console.log(e);
@@ -47,11 +50,11 @@ export default function cambiarNombre() {
   return (
     <View style={styles.container}>
       <TextInput
-        label="Nombre"
+        label="Email"
         style={formStyle.input}
-        onChangeText={(text) => formik.setFieldValue("name", text)}
-        value={formik.values.name}
-        error={formik.errors.name}
+        onChangeText={(text) => formik.setFieldValue("email", text)}
+        value={formik.values.email}
+        error={formik.errors.email}
       />
       <Button
         mode="contained"
@@ -59,8 +62,9 @@ export default function cambiarNombre() {
         onPress={formik.handleSubmit}
       //loading={loading}
       >
-        Cambiar nombre completo
+        Cambiar Email
       </Button>
+      <Caption> Se cerrara sesion automaticamente</Caption>
     </View>
   );
 }
@@ -69,13 +73,13 @@ export default function cambiarNombre() {
 //funcion para poner valores por defecto en el formulario
 function initialValues() {
   return {
-    name: "",
+    email: "",
   };
 }
 //funcion para validar los campos
 function validationSchema() {
   return {
-    name: Yup.string().required(true),
+    name: Yup.email().required(true),
   };
 }
 
