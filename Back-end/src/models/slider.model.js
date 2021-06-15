@@ -1,15 +1,10 @@
 module.exports = mongoose => {
     var schema = mongoose.Schema(
       {
-        _id:{
-          type: String,
-          required: true,
-        },
         img:{
           type: String,
           required: true,
         },
-        
       },
       { timestamps: true }
     );
