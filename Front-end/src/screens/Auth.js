@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {View, Text, StyleSheet, Image, KeyboardAvoidingView, Platform} from 'react-native'
-import logo from "../../assets/logo.jpg"
+import logo from "../../assets/logo.jpeg"
 import {layoutStyle} from '../styles'
 import RegisterForm from '../components/Auth/RegisterForm'
 import LoginForm from '../components/Auth/LoginForm'

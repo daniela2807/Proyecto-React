@@ -9,7 +9,7 @@ export default function AddressList(props) {
     const { addresses } = props
 
     const deleteAddressAlert = (address) => {
-        console.log(address);
+       // console.log(address);
         Alert.alert(
             "Eliminando direccion",
             "¿Estas seguro de que deseas eliminar la direccion?",
@@ -27,7 +27,7 @@ export default function AddressList(props) {
 
     const deleteAdresses = async (idAddress) => {
         try{
-            console.log(idAddress);
+            //console.log(idAddress);
             await deleteAdressesApi(idAddress);
         }catch(error){
             console.log(err);

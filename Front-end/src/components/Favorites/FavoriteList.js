@@ -5,8 +5,8 @@ import Product from './Product'
 
 export default function FavoriteList(props){
 
-    const {products} = props;
-    console.log(products)
+    const {products, pr} = props;
+    //console.log(products)
     return(
         <ScrollView contentContainerStyle={styles.container}>
             <Text style= {styles.title}>Lista de Favoritos</Text>

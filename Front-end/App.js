@@ -22,11 +22,11 @@ export default function App() {
       },
       signIn:async(user, token) => {
         try {
-          console.log("hola");
-          console.log(user);
-          console.log(JSON.stringify(user));
+          //console.log("hola");
+          //console.log(user);
+          //console.log(JSON.stringify(user));
           const jsonValue = JSON.stringify(user[0]);
-          console.log("user",jsonValue)
+          //console.log("user",jsonValue)
           await AsyncStorage.setItem("@user", jsonValue);
         } catch (e) {
           console.log(e);
@@ -42,8 +42,8 @@ export default function App() {
       },
       signUp: async (user, token) => {
         try {
-          console.log("hola");
-          console.log(JSON.stringify(user));
+          //console.log("hola");
+          //console.log(JSON.stringify(user));
           const jsonValue = JSON.stringify(user);
           setUser(jsonValue)
           await AsyncStorage.setItem("@user", jsonValue);

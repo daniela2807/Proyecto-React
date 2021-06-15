@@ -11,7 +11,7 @@ export default function Favoritos(props) {
   const { product } = props;
   const [userLog, setUserLog] = useState(null);
   const {getUser} = React.useContext(AuthContext);  
-  console.log("props",product)
+  //console.log("props",product)
   const addFavoritos = async () => {
     console.log(userLog)
     console.log(product.id)

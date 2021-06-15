@@ -14,9 +14,9 @@ export default function Product(props) {
     const [userLog, setUserLog] = useState(null);
     const {getUser} = React.useContext(AuthContext);  
     const navigation = useNavigation();
-    console.log("Producto", product)
+    //console.log("Producto", product)
     const goToProduct = (id) => {
-        console.log(id)
+        //console.log(id)
         navigation.navigate("producto",{idProducto:id})
     }
 
