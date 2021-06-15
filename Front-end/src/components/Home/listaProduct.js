@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { View,Image, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { map, wrap } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 
@@ -19,6 +19,7 @@ export default function listaProduct(props) {
         >
           <View style={styles.containerProd}>
             <View style={styles.producto}>
+              <Image style={{height:150, resizeMode:"contain"}} source={require("./../../../assets/logo.jpg")}/>
               <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">
                 {product.name}
               </Text>
