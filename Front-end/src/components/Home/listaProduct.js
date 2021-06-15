@@ -1,5 +1,5 @@
 import React from "react";
-import { View,Image, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { View, Image, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { map, wrap } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 
@@ -10,6 +10,7 @@ export default function listaProduct(props) {
     console.log("id del producto ", id);
   };
 
+  const ruta = "./../../../assets/"
   return (
     <View style={styles.container}>
       {map(products, (product) => (
@@ -19,9 +20,9 @@ export default function listaProduct(props) {
         >
           <View style={styles.containerProd}>
             <View style={styles.producto}>
-              <Image style={{height:150, resizeMode:"contain"}} source={require("./../../../assets/logo.jpg")}/>
+              <Image style={styles.imagenes} source={{uri: (product.img) }} />
               <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">
-                {product.name}
+                {product.img}
               </Text>
             </View>
           </View>
@@ -50,5 +51,9 @@ const styles = StyleSheet.create({
   name: {
     marginTop: 15,
     fontSize: 18,
+  },
+  imagenes: {
+    width: 100,
+    height: 100,
   },
 });
