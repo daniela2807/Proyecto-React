@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React ,{useState,useCallback}from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import StatusBar from "../components/StatusBar"
@@ -46,16 +45,6 @@ export default function favorites() {
             <FavoriteList products={products}/>
         )}
         </>
-=======
-import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
-
-export default function favorites() {
-    return (
-        <View style={styles.container}>
-            <Text>Estamos en favorites</Text>
-        </View>
->>>>>>> 43c780098e99e61ac06981e7a2d23db73e2e60aa
     )
 }
 

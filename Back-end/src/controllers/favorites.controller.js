@@ -55,9 +55,9 @@ exports.findbyUser = (req, res) => {
 // Find a single Category with an id
 exports.addProduct = (req, res) => {
     const id_user = req.params.id;
-    console.log("Hola")
-    console.log(req.body.products)
-    Favorit.findOneAndUpdate({id_user: id_user},{$push :{products:req.body.products}})
+    console.log("id",id_user)
+    console.log("Hola", req.body)
+    Favorit.findOneAndUpdate({id_user: id_user},{$push :{products:req.body.product}})
       .then(data => {
         if (!data)
           res.status(404).send({ message: "Not found Category with id " + id });

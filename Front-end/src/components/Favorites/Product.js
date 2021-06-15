@@ -15,7 +15,13 @@ export default function Product(props) {
             </View>
             <View style={styles.info}>
                 <View>
-                    <Text style={styles.name}>{product.name}</Text>
+                    <Text style={styles.name} numberOfLines={3} ellipsizeMode="tail">{product.name}
+                    </Text>
+                    <View style = {styles.price}>
+                        <Text style = {styles.currentPrice}>
+                            $ {product.cost}
+                        </Text>
+                    </View>
                 </View>
             </View>
         </View>
@@ -47,5 +53,13 @@ const styles = StyleSheet.create({
     },
     name:{
         fontSize:16
+    },
+    prices: {
+        flexDirection:"row",
+        marginTop:5,
+        alignItems:"flex-end"
+    },
+    currentPrice:{
+        fontSize:22
     }
 })
