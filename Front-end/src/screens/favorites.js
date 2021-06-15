@@ -3,9 +3,12 @@ import { StyleSheet, View, Text } from 'react-native'
 import StatusBar from "../components/StatusBar"
 import colors from '../styles/colors';
 import Search from '../components/Auth/Search'
+import {size} from 'lodash'
 import {AuthContext} from '../context/AuthContext'
+import ScreenLoading from '../components/ScreenLoading'
 import { getFavorites } from '../api/favorite'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import FavoriteList from '../components/Favorites/FavoriteList'
 
 export default function favorites() {
     const [products, setProducts] = useState(null);
@@ -15,13 +18,12 @@ export default function favorites() {
         useCallback(() => {
           (async () => {
               const userlog = await getUser()
-             // console.log("unde",userlog)
-              // console.log(userlog)
                const product = await getFavorites(userlog)
-               console.log(product);
-               setProducts(product)
-              // console.log(dire)
-              //console.log("hola"+  JSON.stringify(direcs))
+               if(product == null){
+                    setProducts([])
+               }else{
+               setProducts(JSON.parse(JSON.stringify(product)).products)
+               }
           })();
         }, [])
       );
@@ -32,18 +34,29 @@ export default function favorites() {
         <>
         <StatusBar backgroundColor = {colors.bgDark} bartStyle = "light-content"/>
         <Search/>
-        <View style={styles.container}>
-            <Text>Estamos en favorites</Text>
-        </View>
+        {!products ? (
+            <ScreenLoading text = "Cargando Lista"/>
+        ): size(products) === 0 ? (
+            <View style={styles.container}>
+                <Text style = {styles.title}>Lista de Favoritos</Text>
+                <Text>No tienes productos en tu lista</Text>
+            </View>
+        ):(
+            <FavoriteList products={products}/>
+        )}
         </>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
-        justifyContent: "center",
-        alignItems: "center"
+        paddingVertical:20,
+        paddingHorizontal:10
+    },
+    title:{
+        fontWeight:"bold",
+        fontSize:19,
+        marginBottom:5
     }
 
 
