@@ -21,16 +21,16 @@ export default function Banner() {
   useEffect(() => {
     (async () => {
       const response = await getBannerApi();
-      console.log("respuesta del response", response);
+      //console.log("respuesta del response", response);
       setBanner(response);
     })();
   }, []);
 
-  //if(!banner) return null;
+  if (!banner) return null;
   const renderItem = ({ item }) => {
     return (
       <TouchableWithoutFeedback onPress={() => console.log("ir al producto")}>
-        <image styles={styles.carrusel} source={{ uri: item.img }}></image>
+        <Image style={styles.carrusel} source={{ uri: item.img }} />
       </TouchableWithoutFeedback>
     );
   };
@@ -38,7 +38,7 @@ export default function Banner() {
     <View style={styles.container}>
       <Coursel
         layout={"default"}
-        data={banner} //checar backend
+        data={banner} 
         sliderWidth={width}
         itemWidth={width}
         renderItem={renderItem}
