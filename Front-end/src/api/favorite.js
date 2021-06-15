@@ -39,3 +39,24 @@ export async function addFavorites(id,product){
         return null;
     }
 }
+
+export async function deleteFavorites(id,product){
+    try {
+        console.log(id)
+        console.log(product)
+        const url = `${API_URL}/favorite/${id}`
+        const params = {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({"product":product})
+        }
+        const response = await fetch(url,params);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

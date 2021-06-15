@@ -99,7 +99,7 @@ exports.update = (req, res) => {
 exports.deleteProduct = (req, res) => {
     const id_user = req.params.id;
     console.log(req.body)
-    Favorit.findOneAndUpdate({id_user: id_user},{$pull :{products:req.body.products}})
+    Favorit.findOneAndUpdate({id_user: id_user},{$pull :{products:req.body.product}})
       .then(data => {
         if (!data)
           res.status(404).send({ message: "Not found with id " + id });
