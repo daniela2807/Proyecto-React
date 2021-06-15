@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React ,{useState,useCallback}from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import StatusBar from "../components/StatusBar"
 import colors from '../styles/colors';

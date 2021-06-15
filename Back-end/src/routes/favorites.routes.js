@@ -6,7 +6,7 @@ module.exports = app => {
     // Create a new Product
     router.post("/:id", favorit.create);
   
-    router.post("/:id",favorit.addProduct);
+    router.post("/add/:id",favorit.addProduct);
   
     // Retrieve a favorites by user
     router.get("/:id", favorit.findbyUser);

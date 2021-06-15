@@ -11,7 +11,7 @@ export default function home() {
       <Search/>
       <ScrollView>
         {/* banner
-        nuevos productos */}
+         */}
         <NuevosProduc/>
       </ScrollView>
     </>

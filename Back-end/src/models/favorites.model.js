@@ -7,7 +7,7 @@ module.exports = mongoose => {
             id_user: {
                 type: Schema.ObjectId, ref: "User"
             },
-            products: { type: [Schema.ObjectId], ref: "Product" }
+            products: [{ type: Schema.ObjectId, ref: "Product" }]
         },
         { timestamps: true }
     );

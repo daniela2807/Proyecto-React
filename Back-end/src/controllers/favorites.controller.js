@@ -2,6 +2,7 @@
 const db = require("../models");
 const Favorit = db.favorit;
 
+
 // Create and Save a new User
 exports.create = (req, res) => {
      // Validate request
@@ -35,12 +36,13 @@ exports.create = (req, res) => {
 
 // Retrieve all Category from the database.
 exports.findbyUser = (req, res) => {
-    Favorit.find({id_user: req.params.id})
+    console.log("Hola")
+    Favorit.find({id_user: req.params.id}).populate('products')
     .then(data => {
         if(!data){
-            res.send("No existe")
+            res.send(null)
         }
-      res.send(data);
+      res.send(data[0]);
     })
     .catch(err => {
       res.status(500).send({
@@ -53,8 +55,8 @@ exports.findbyUser = (req, res) => {
 // Find a single Category with an id
 exports.addProduct = (req, res) => {
     const id_user = req.params.id;
-
-    console.log(req.body)
+    console.log("Hola")
+    console.log(req.body.products)
     Favorit.findOneAndUpdate({id_user: id_user},{$push :{products:req.body.products}})
       .then(data => {
         if (!data)
