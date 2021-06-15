@@ -16,6 +16,10 @@ const { Schema } = require("mongoose");
           type: Number,
           required: true,
         },
+        img: {
+          type: String,
+          required: true,
+        },
         id_cat:{ type: Schema.ObjectId, ref: "Category" }  ,
         description: {type: Array, default: [], require:false}
       },
