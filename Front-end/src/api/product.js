@@ -17,3 +17,20 @@ export async function getLastProductsApi(){
         return null;
     }
 }
+export async function getOneProductApi(id){
+    try {
+        const url = `${API_URL}/products/${id}`
+        const params = {
+            method: "GET",
+            headers:{
+                "Content-Type": "application/json"
+            }
+        }
+        const response = await fetch(url,params);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

@@ -1,16 +1,17 @@
 import React from "react";
 import { View, Image, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { map, wrap } from "lodash";
+import { map } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 
 export default function listaProduct(props) {
   const { products } = props;
   const navigation = useNavigation();
+
   const iraProducto = (id) => {
-    console.log("id del producto ", id);
+    navigation.push("producto", {idProducto: id})//se pone push para ir actualizando la imagen cada vez que se pinche un producto si no solo se veria el primero producto pinchado
   };
 
-  const ruta = "./../../../assets/"
+  
   return (
     <View style={styles.container}>
       {map(products, (product) => (
@@ -22,7 +23,7 @@ export default function listaProduct(props) {
             <View style={styles.producto}>
               <Image style={styles.imagenes} source={{uri: (product.img) }} />
               <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">
-                {product.img}
+                {product.name}
               </Text>
             </View>
           </View>
@@ -53,8 +54,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   imagenes: {
-    width: 100,
-    height: 100,
+    height: 150,
+    resizeMode:"contain",
   },
 });
-                                                            
