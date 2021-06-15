@@ -10,6 +10,7 @@ db.user = require("./user.model")(mongoose);
 db.product = require("./product.model")(mongoose);
 db.category = require("./category.model")(mongoose);
 db.address = require("./address.model")(mongoose);
+db.favorit = require("./favorites.model")(mongoose);
 
 
 module.exports = db;

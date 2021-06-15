@@ -47,6 +47,7 @@ require("./routes/users.routes")(app);
 require("./routes/products.routes")(app);
 require("./routes/category.routes")(app);
 require("./routes/address.routes")(app);
+require("./routes/favorites.routes")(app);
 
 //iniciamos servidor
 app.listen(app.get('port'),() =>{
